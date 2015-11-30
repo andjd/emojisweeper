@@ -1,0 +1,26 @@
+(function (root) {
+	"use strict";
+	var MS = root.MS = root.MS || {};
+
+	MS.Constants = {
+		HIDDEN_ICONS: ["🌁","🏘","🗻","🏔","🌋","🏞","⛺","️🌅","🌄","🌇","🌃","🏙","🌌"],
+		REVEALED_COUNT_ICONS: ["0⃣","1️⃣","2️⃣", "3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣"],
+		BOMB: "💣",
+		FLAGGED_DANGER: "❎",
+		FLAGGED_QUESTION: "❓",
+		EXPLODED_BOMB: "😡",
+		REVEALED_EMPTY_ICONS: ["😀","😉","😇","😊","😍","😎","😜","😺"],
+
+		N: [-1, 0],
+		E: [0, 1],
+		S: [1, 0],
+		W: [0, -1],
+		NE: [-1, 1],
+		NW: [-1, -1],
+		SE: [1, 1],
+		SW: [-1, -1]
+
+	}
+
+
+}(this))

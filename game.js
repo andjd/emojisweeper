@@ -14,7 +14,7 @@
   }
 
   Tile.DELTAS = [[-1, -1], [-1,  0], [-1,  1], [ 0, -1],
-                 [ 0,  1], [ 1, -1], [ 1,  0], [ 1,  1]]
+                  [ 0,  1], [ 1, -1], [ 1,  0], [ 1,  1]]
 
   Tile.prototype.adjacentBombCount = function() {
     var bombCount = 0;
@@ -32,11 +32,11 @@
     }
 
     this.explored = true;
-    if (!this.bombed && this.adjacentBombCount() === 0) {
-      this.neighbors().forEach(function(tile) {
-        tile.explore();
-      });
-    }
+    // if (!this.bombed && this.adjacentBombCount() === 0) {
+    //   this.neighbors().forEach(function(tile) {
+    //     tile.explore();
+    //   });
+    // }
 
   };
 
