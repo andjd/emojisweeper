@@ -7,7 +7,7 @@ var GameObject = React.createClass ({
   },
 
   winning: function () {
-      activeTimeout = setTimeout(this.winnerWinner, 350);
+      activeTimeout = setTimeout(this.winnerWinner, 3500);
       this.setState({winning: activeTimeout});
   },
 
@@ -16,7 +16,6 @@ var GameObject = React.createClass ({
   },
 
   winnerWinner: function () {
-        this.setState({gameWon: true, gameOver: true});
         alert("Congratulations");
   },
 
@@ -35,7 +34,7 @@ var GameObject = React.createClass ({
               <h1>emojiSweeper</h1>
               <button onClick={this.resetGame}>New Game</button>
           </div>
-          <Board board={this.state.board} 
+          <Board  
                         winning={this.winning}
                         abortWinning={this.abortWinning}
                         setSeedNode={this.setSeedNode} /> 

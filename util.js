@@ -76,6 +76,7 @@
 			return{
 				id: _nextID(),
 				fn: function (tile) {
+					console.log("stillChecking");
 					if(!tile.state.display && !tile.state.bomb) {
 						tile.props.abortWinning();
 					}
