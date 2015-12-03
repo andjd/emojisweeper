@@ -20,6 +20,11 @@
 			})
 		},
 
+		shouldComponentUpdate: function (newProps, newState) {
+			if (executed[newProps.instruction]) {return false;}
+			return true;
+		},
+
 		componentWillReceiveProps: function (newProps) {
 			if (newProps.instruction !== this.props.instruction &&
 				!this.state.executed[newProps.instruction.id]){
