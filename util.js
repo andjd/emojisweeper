@@ -2,13 +2,24 @@
 	"use strict";
 	var MS = root.MS = root.MS || {};
 
-	var _ID = 0
+	var _ID = 0;
 
 	var _nextID = function() {
 
 		_ID = _ID + 1 ;
 		return _ID ;
-	}
+	};
+
+	var allDirs =  function () { return[
+					MS.Constants.N, 
+					MS.Constants.S, 
+					MS.Constants.E, 
+					MS.Constants.W,
+					MS.Constants.NE, 
+					MS.Constants.SE, 
+					MS.Constants.NW, 
+					MS.Constants.SW
+					]};
 
 	MS.Util = {
 		revealTile: function () {
@@ -18,11 +29,11 @@
 					tile.setState({display: true});
 				},
 				dirsFn: function (tile) {
-					if (tile.state.bombCount === 0) {
-						return [MS.Constants.N, MS.Constants.S, MS.Constants.E, MS.Constants.W]
+					if (tile.state.bombCount === 0  && !tile.state.bomb  && !tile.state.flag) {
+						return allDirs();
 					} else { return []}
 				},
-				timeout: 300
+				timeout: 60
 			}
 		},
 
@@ -33,33 +44,23 @@
 					tile.setState({bombCount: tile.state.bombCount + 1});
 				},
 				dirsFn: function (tile) {
-						return [
-							MS.Constants.N, 
-							MS.Constants.S, 
-							MS.Constants.E, 
-							MS.Constants.W,
-							MS.Constants.NE, 
-							MS.Constants.SE, 
-							MS.Constants.NW, 
-							MS.Constants.SW
-						]
+						return allDirs();
 
 				},
 				timeout: 0,
 				tail: 1
 			}
-		}
+		},
 
 		seedBomb: function() {
-			revealTile: function () {
 			return {
 				id: _nextID(),
 				fn: function (tile) {
-					var b = (!Math.floor(Math.random() * 5))
+					var b = (!Math.floor(Math.random() * 4.75))
 					if (b) {tile.executeAndPropigateInstruction(MS.Util.announceBomb(), function (tile) {
-						tile.setState({bomb = false})
-					})}
-					tile.setState({bomb: b});
+						tile.setState({bomb: true});
+					})
+				}else{tile.setState({bomb: b})}
 				},
 				dirsFn: function (tile) {
 					return [MS.Constants.N, MS.Constants.S, MS.Constants.E, MS.Constants.W]
@@ -68,8 +69,52 @@
 				timeout: 0
 			}
 		},
+
+	
+
+		checkWon: function () {
+			return{
+				id: _nextID(),
+				fn: function (tile) {
+					if(!tile.state.display && !tile.state.bomb) {
+						tile.props.abortWinning();
+					}
+				},
+				dirsFn: function (tile) {
+					return [MS.Constants.N, MS.Constants.S, MS.Constants.E, MS.Constants.W]
+				},
+				timeout: 0
+			};
+		},
+
+		reset: function () {
+			return {
+				id: _nextID(),
+				fn: function (tile) {
+					setTimeout(tile.replaceState.bind(tile, tile.getInitialState()), 300);
+				},
+				dirsFn: function (tile) {
+					return [MS.Constants.N, MS.Constants.S, MS.Constants.E, MS.Constants.W]
+				},
+				timeout: 0,
+				tail: 50
+			}
+		},
+
+		boom: function () {
+			return {
+				id: _nextID(),
+				fn: function (tile) {
+					tile.setState ({over: true});
+				},
+				dirsFn: function (tile) {
+					return [MS.Constants.N, MS.Constants.S, MS.Constants.E, MS.Constants.W]
+				},
+				timeout: 65
+			}
+
 		}
-	}
+	};
 
 
 }(this))

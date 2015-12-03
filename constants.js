@@ -4,12 +4,13 @@
 
 	MS.Constants = {
 		HIDDEN_ICONS: ["🌁","🏘","🗻","🏔","🌋","🏞","⛺","️🌅","🌄","🌇","🌃","🏙","🌌"],
-		REVEALED_COUNT_ICONS: ["0⃣","1️⃣","2️⃣", "3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣"],
+		REVEALED_COUNT_ICONS: ["0","1","2️", "3️","4️","5️","6️","7️","8️"],
 		BOMB: "💣",
 		FLAGGED_DANGER: "❎",
 		FLAGGED_QUESTION: "❓",
-		EXPLODED_BOMB: "😡",
+		EXPLODED_BOMB: "☠",
 		REVEALED_EMPTY_ICONS: ["😀","😉","😇","😊","😍","😎","😜","😺"],
+		DEAD_ICONS: ["☹️","😣","😫","😵","🙀"],
 
 		N: [-1, 0],
 		E: [0, 1],
@@ -18,7 +19,7 @@
 		NE: [-1, 1],
 		NW: [-1, -1],
 		SE: [1, 1],
-		SW: [-1, -1]
+		SW: [1, -1]
 
 	}
 
