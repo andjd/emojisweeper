@@ -21,7 +21,7 @@
 		},
 
 		shouldComponentUpdate: function (newProps, newState) {
-			if (executed[newProps.instruction]) {return false;}
+			if (this.state.executed[newProps.instruction]) {return false;}
 			return true;
 		},
 
