@@ -21,3 +21,4 @@ Controls: click to reveal a tile, right-click to flag a tile as a bomb or unknow
 - [ ] remaining bomb count
 - [ ] additional modes (candlelight, speed)
 - [ ] re-sizable board and difficulty setting
+
