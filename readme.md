@@ -1,6 +1,8 @@
 #Readme:
 
 ###Live Version: http://andjd.github.io/mines.js
+
+*Note: Chrome for Windows does not display emoji natively——If the game is not displaying for you, try another browser.*
 emojiSweeper is a clone of the classic minesweeper built in JavaScript and React. 
 
 It uses a nifty cascading peer-to-peer paradigm to propigate instructions, allowing for a non-hirearchical code-structure and cool visual effects.  
