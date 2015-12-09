@@ -46,8 +46,10 @@ var Board = React.createClass({
                                                   ref={ "tile-" + String(rowIndex) + String(tileIndex)}
                                                   propigate={this.propigate([rowIndex, tileIndex])}
                                                   instruction={this.state.instructions[[rowIndex, tileIndex]]} 
-                                                  winning={this.props.winning}
-                                                  abortWinning={this.props.abortWinning}/>
+                                                  addBomb={this.props.addBomb}
+                                                  addFlag={this.props.addFlag}
+                                                  rmFlag={this.props.rmFlag}
+                                                  addRevealed={this.props.addRevealed} />
                                   );
                   }.bind(this))
                   }

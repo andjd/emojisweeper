@@ -27,6 +27,7 @@
 				id: _nextID(),
 				fn: function (tile) {
 					tile.setState({display: true});
+					tile.props.addRevealed();
 				},
 				dirsFn: function (tile) {
 					if (tile.state.bombCount === 0  && !tile.state.bomb  && !tile.state.flag) {
@@ -42,6 +43,7 @@
 				id: _nextID(),
 				fn: function (tile) {
 					tile.setState({bombCount: tile.state.bombCount + 1});
+					tile.props.addBomb();
 				},
 				dirsFn: function (tile) {
 						return allDirs();
@@ -71,23 +73,7 @@
 		},
 
 	
-
-		checkWon: function () {
-			return{
-				id: _nextID(),
-				fn: function (tile) {
-					console.log("stillChecking");
-					if(!tile.state.display && !tile.state.bomb) {
-						tile.props.abortWinning();
-					}
-				},
-				dirsFn: function (tile) {
-					return [MS.Constants.N, MS.Constants.S, MS.Constants.E, MS.Constants.W]
-				},
-				timeout: 0
-			};
-		},
-
+            
 		reset: function () {
 			return {
 				id: _nextID(),
@@ -100,6 +86,10 @@
 				timeout: 0,
 				tail: 50
 			}
+		},
+
+		victory: function () {
+			alert("congrats");
 		},
 
 		boom: function () {

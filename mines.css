@@ -2,10 +2,7 @@
   font-family: emoji;
   
   /* Fonts for text outside emoji blocks */
-  src: local('Droid Sans Mono'),
-       local('Lucida Console'),
-       local('Arial Monospaced'),
-       local(Arial);
+  src: local(Arial)
 }
 
 @font-face {
@@ -31,16 +28,22 @@
 	color: white;
 	font-size: 27px;
 	text-align: center;
+	cursor: default;
+	font-family: 'emoji'
 }
 
 .row {
 	height: 30px;
 }
 
-h1 {
+h1, .bomb-count  {
 	display: inline-block;
 	font-family: 'Oswald', sans-serif;
 	margin: 0;
+}
+.bomb-count {
+	color: #FF3D00;
+	padding: 0 20px;
 }
 
 button {

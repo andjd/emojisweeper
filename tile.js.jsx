@@ -52,7 +52,6 @@
 			if (this.state.bomb) {
 				this.executeAndPropigateInstruction(MS.Util.boom());
 			} else {
-				this.executeAndPropigateInstruction(MS.Util.checkWon(), this.props.winning)
 				this.executeAndPropigateInstruction(MS.Util.revealTile());
 			}
 		},
@@ -62,12 +61,14 @@
 			switch (this.state.flag) {
 			case "danger":
 				newFlag = "question";
+				this.props.rmFlag();
 				break;
 			case "question":
 				newFlag = false
 				break;
 			default:
 				newFlag = "danger";
+				this.props.addFlag();
 				break;
 			}
 

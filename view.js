@@ -1,22 +1,40 @@
 var GameObject = React.createClass ({
   getInitialState: function () {
     return({
-      gameOver: false,
-      gameWon: false
+      newDisabled: false,
+      bombCount: 0,
+      flagCount: 0,
+      revealedCount: 0
     });
   },
-
-  winning: function () {
-      activeTimeout = setTimeout(this.winnerWinner, 3500);
-      this.setState({winning: activeTimeout});
+  componentDidUpdate: function () {
+    if (this.won()) {this.state.seedNode.executeAndPropigateInstruction(MS.Util.victory())}
   },
 
-  abortWinning: function () {
-    clearTimeout(this.state.winning);
+  addBomb: function () {
+    this.setState({bombCount: this.state.bombCount + 1});
   },
 
-  winnerWinner: function () {
-        alert("Congratulations");
+  addFlag: function () {
+    this.setState({flagCount: this.state.flagCount + 1});
+  },
+
+  rmFlag: function () {
+    this.setState({flagCount: this.state.flagCount - 1});
+  },
+
+  addRevealed: function () {
+    this.setState({revealedCount : this.state.revealedCount - 1});
+  },
+
+  bombCounter: function () {
+    if (this.state.bombCount !== 0) {
+        return String(this.state.bombCount - this.state.flagCount);
+      } else {return "";}
+  },
+
+  won: function() {
+    return (this.state.revealedCount === 150 - this.state.bombCount)
   },
 
   setSeedNode: function (seed) {
@@ -24,7 +42,9 @@ var GameObject = React.createClass ({
   },
 
   resetGame: function () {
+    this.setState({bombCount: 0, flagCount: 0, newDisabled: true})
     this.state.seedNode.executeAndPropigateInstruction(MS.Util.reset());
+    setTimeout(this.setState.bind(this, {newDisabled: false}), 2000);
   },
 
   render: function () {
@@ -32,11 +52,14 @@ var GameObject = React.createClass ({
       <div className="game">
           <div>
               <h1>emojiSweeper</h1>
-              <button onClick={this.resetGame}>New Game</button>
+              <span className="bomb-count">{this.bombCounter()}</span>
+              <button onClick={this.resetGame} disabled={this.state.newDisabled}>New Game</button>
           </div>
           <Board  
-                        winning={this.winning}
-                        abortWinning={this.abortWinning}
+                        addBomb={this.addBomb}
+                        addFlag={this.addFlag}
+                        rmFlag={this.rmFlag}
+                        addRevealed={this.addRevealed}
                         setSeedNode={this.setSeedNode} /> 
       </div>
     );
