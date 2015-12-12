@@ -1,3 +1,5 @@
+
+
 var GameObject = React.createClass ({
   getInitialState: function () {
     return({
@@ -24,7 +26,9 @@ var GameObject = React.createClass ({
   },
 
   addRevealed: function () {
-    this.setState({revealedCount : this.state.revealedCount - 1});
+    this.revealed = this.revealed || 0;
+
+    this.setState({revealedCount: ++this.revealed});
   },
 
   bombCounter: function () {
@@ -34,7 +38,7 @@ var GameObject = React.createClass ({
   },
 
   won: function() {
-    return (this.state.revealedCount === 150 - this.state.bombCount)
+    return (this.state.revealedCount === 180 - this.state.bombCount)
   },
 
   setSeedNode: function (seed) {
@@ -42,7 +46,8 @@ var GameObject = React.createClass ({
   },
 
   resetGame: function () {
-    this.setState({bombCount: 0, flagCount: 0, newDisabled: true})
+    this.setState({bombCount: 0, flagCount: 0, revealedCount: 0, newDisabled: true});
+    this.revealed = 0;
     this.state.seedNode.executeAndPropigateInstruction(MS.Util.reset());
     setTimeout(this.setState.bind(this, {newDisabled: false}), 2000);
   },

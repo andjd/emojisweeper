@@ -7,6 +7,7 @@
 			var  hidden = MS.Constants.HIDDEN_ICONS[Math.floor(Math.random() * MS.Constants.HIDDEN_ICONS.length)];
 			var empty = MS.Constants.REVEALED_EMPTY_ICONS[Math.floor(Math.random() * MS.Constants.REVEALED_EMPTY_ICONS.length)];
 			var dead = MS.Constants.DEAD_ICONS[Math.floor(Math.random() * MS.Constants.DEAD_ICONS.length)]
+			var life = MS.Constants.LIFE_ICONS[Math.floor(Math.random() * MS.Constants.LIFE_ICONS.length)]
 
 			return({bomb: undefined, 
 				bombCount: 0,
@@ -16,7 +17,8 @@
 				executed: {},
 				hidden: hidden,
 				empty: empty,
-				dead: dead
+				dead: dead,
+				life: life
 			})
 		},
 
@@ -51,6 +53,7 @@
 		reveal: function () {
 			if (this.state.bomb) {
 				this.executeAndPropigateInstruction(MS.Util.boom());
+				this.setState({boom: true})
 			} else {
 				this.executeAndPropigateInstruction(MS.Util.revealTile());
 			}
@@ -87,7 +90,6 @@
 			e.preventDefault();
 			if (typeof this.state.bomb === "undefined") {
 				this.initialize();
-				MS.Util.seedBomb(this);
 			}else if (this.state.flag){
 				this.toggleFlag();
 			} else {
@@ -103,15 +105,13 @@
 		render: function () {
 			var d;
 			if (this.state.over && this.state.bomb) {
-				d = MS.Constants.BOMB;
+				d = (this.state.boom) ? MS.Constants.EXPLODED_BOMB : MS.Constants.BOMB;
 			} else if (this.state.over){
 				d = this.state.dead
 			}else if (this.state.flag){
 				d = (this.state.flag === "danger") ? MS.Constants.FLAGGED_DANGER : MS.Constants.FLAGGED_QUESTION;
 			} else if (!this.state.display) {
 				d = this.state.hidden;
-			} else if (this.state.bomb) { 
-				d = MS.Constants.BOMB;
 			} else if (this.state.bombCount === 0) {
 				d = this.state.empty;
 			} else { 

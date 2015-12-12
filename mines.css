@@ -8,14 +8,24 @@
 @font-face {
   font-family: emoji;
 
-  src: 
-       url('font/Symbola-Emoji.eot?#iefix') format('embedded-opentype'),
-       url('font/Symbola-Emoji.woff') format('woff'),
-       url('font/Symbola-Emoji.ttf') format('truetype');
+  src: local('Apple Color Emoji'),
+       local('Android Emoji'),
+       local('Segoe UI'),
+       local(EmojiSymbols),
+       local(Symbola),
+       url('font/Symbola.ttf') format('truetype');
 
   /* Emoji unicode blocks */
   unicode-range: U+1F300-1F5FF, U+1F600-1F64F, U+1F680-1F6FF, U+2600-26FF, U+2702-27B0;
 }
+
+aside {
+	text-align: center;
+	margin-top: 35px;
+	font-family: 'Oswald', sans-serif;
+	font-size: 35px;
+}
+
 
 .tile {
 	position: relative;
@@ -25,7 +35,14 @@
 	font-size: 27px;
 	text-align: center;
 	cursor: default;
-	font-family: 'emoji'
+	font-family: 'emoji';
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .row {

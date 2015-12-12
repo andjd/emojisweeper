@@ -26,8 +26,10 @@
 			return {
 				id: _nextID(),
 				fn: function (tile) {
-					tile.setState({display: true});
-					tile.props.addRevealed();
+					if (!tile.state.display) {
+						tile.setState({display: true});
+						tile.props.addRevealed();
+					}
 				},
 				dirsFn: function (tile) {
 					if (tile.state.bombCount === 0  && !tile.state.bomb  && !tile.state.flag) {
@@ -58,14 +60,14 @@
 			return {
 				id: _nextID(),
 				fn: function (tile) {
-					var b = (!Math.floor(Math.random() * 4.75))
-					if (b) {tile.executeAndPropigateInstruction(MS.Util.announceBomb(), function (tile) {
+					var b = (!Math.floor(Math.random() * 6))
+					if (b && !tile.state.display) {tile.executeAndPropigateInstruction(MS.Util.announceBomb(), function (tile) {
 						tile.setState({bomb: true});
 					})
-				}else{tile.setState({bomb: b})}
+				}else{tile.setState({bomb: false})}
 				},
 				dirsFn: function (tile) {
-					return [MS.Constants.N, MS.Constants.S, MS.Constants.E, MS.Constants.W]
+					return allDirs();
 
 				},
 				timeout: 0
