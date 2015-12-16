@@ -53,10 +53,19 @@
 		reveal: function () {
 			if (this.state.bomb) {
 				this.executeAndPropigateInstruction(MS.Util.boom());
-				this.setState({boom: true})
+				this.dramaticDeath();
+
 			} else {
 				this.executeAndPropigateInstruction(MS.Util.revealTile());
 			}
+		},
+
+		dramaticDeath: function () {
+			this.setState({boom: true});
+			$(this.refs.self.getDOMNode()).effect("shake", {distance: 10, times: 15});
+			// setTimeout(function () {
+			// 	$(this.refs.self.getDOMNode())
+			// }.bind(this), 0)
 		},
 
 		toggleFlag: function () {
@@ -120,7 +129,8 @@
 
 
 			return (
-				<span   onClick={this.handleClick} 
+				<span   ref="self"
+						onClick={this.handleClick} 
 						onContextMenu={this.handleRightClick} 
 						className={"tile " + ((typeof d === "number") ? "t-" + String(d) : "" )}
 						>{d}</span>

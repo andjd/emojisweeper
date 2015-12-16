@@ -99,11 +99,13 @@
 				id: _nextID(),
 				fn: function (tile) {
 					tile.setState ({over: true});
+					// Slows down code unacceptibly
+					// $(tile.refs.self.getDOMNode()).effect((Math.floor(Math.random()*2)) ? "bounce" : "shake", "fast");
 				},
 				dirsFn: function (tile) {
 					return [MS.Constants.N, MS.Constants.S, MS.Constants.E, MS.Constants.W]
 				},
-				timeout: 65
+				timeout: 150
 			}
 
 		}

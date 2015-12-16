@@ -29,7 +29,8 @@ aside {
 
 .tile {
 	position: relative;
-	display: inline-block;
+	display: block;
+	float:left;
 	width: 30px;
 	color: black;
 	font-size: 27px;
@@ -154,4 +155,10 @@ body {
 
 .t-8::before {
 	background-color: #212121;
+}
+
+.death-animation {
+	position: absolute;
+	z-index: 100;
+	font-size: 300px;
 }
