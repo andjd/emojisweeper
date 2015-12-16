@@ -3,7 +3,7 @@
 	var MS = root.MS = root.MS || {};
 
 	MS.Constants = {
-		HIDDEN_ICONS: ["🌁","🏘","🗻","🏔","🌋","⛺","🌄","🌇","🌃","🏙","🌌"],
+		HIDDEN_ICONS: ["🌁","🗻","🌋","⛺","🌄","🌇","🌃","🌌"],
 		REVEALED_COUNT_ICONS: ["0","1","2️", "3️","4️","5️","6️","7️","8️"],
 		BOMB: "💣",
 		FLAGGED_DANGER: "❎",
