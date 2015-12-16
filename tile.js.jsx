@@ -62,7 +62,7 @@
 
 		dramaticDeath: function () {
 			this.setState({boom: true});
-			$(this.refs.self.getDOMNode()).effect("shake", {distance: 10, times: 15});
+			$(this.refs.self.getDOMNode()).effect("shake", {distance: 10, times: 10});
 			// setTimeout(function () {
 			// 	$(this.refs.self.getDOMNode())
 			// }.bind(this), 0)
